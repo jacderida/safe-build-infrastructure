@@ -156,8 +156,11 @@ provision-jenkins-prod-aws:
 	./scripts/sh/run_ansible_against_jenkins_master.sh "prod" "ec2-bastion.ini"
 	./scripts/sh/run_ansible_against_windows_instance.sh "prod" "ec2-bastion.ini"
 
-provision-rust_slave-macos-mojave-x86_64:
-	./scripts/sh/run_ansible_against_mac_slave.sh
+provision-rust_slave-macos-mojave-vbox:
+	./scripts/sh/run_ansible_against_mac_slave.sh "vagrant"
+
+provision-rust_slave-macos-mojave-prod-aws:
+	./scripts/sh/run_ansible_against_mac_slave.sh "prod"
 
 clean-rust_slave-macos-mojave-x86_64:
 	ANSIBLE_PIPELINING=True ansible-playbook -i environments/vagrant/hosts ansible/osx-teardown.yml
