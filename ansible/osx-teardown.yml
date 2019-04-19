@@ -27,8 +27,15 @@
         name: java8
         state: absent
       become: yes
-      become_user: qa
+      become_user: qamaidsafe
     - name: 'uninstall caskroom/versions'
       homebrew_tap:
         name: caskroom/versions
+        state: absent
+    - name: 'stop wireguard (not a problem if this errors)'
+      command: wg-quick down wg0
+      ignore_errors: yes
+    - name: 'uninstall wireguard'
+      homebrew:
+        name: wireguard-tools
         state: absent
