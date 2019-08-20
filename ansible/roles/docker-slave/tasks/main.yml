@@ -50,4 +50,3 @@
   when: docker_slave_project == 'safe_authenticator_cli'
   with_items:
     - build
-    - build-dev
